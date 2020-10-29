@@ -38,6 +38,24 @@ export default {
   props: {
     msg: String,
   },
+  sockets: {
+    // 接收订阅的数据，"getUserInfo"为前后端协商的名称
+    getUserInfo(data) {
+      // do something
+      console.log(data);
+    },
+  },
+  mounted() {
+    /*
+    param1：订阅主题为"SOCKET_DATA"的数据，该名称也是前后端协商得到，
+    param2：传递给服务端的参数，前后端协商确定
+     */
+    this.$socket.emit('SOCKET_DATA', {
+      projectId: '88',
+      theme: 'getUserInfo',
+      time: 10000,
+    });
+  },
 };
 </script>
 
